@@ -1,12 +1,12 @@
 <template>
   <div class="About">
-    <NavBar title="关于我们" :border="true"></NavBar>
+    <NavBar title="关于我们" :back="true"></NavBar>
     <div class="content">
-      <img src="../../assets/img/about/introduce.jpg" />
-      <img src="../../assets/img/about/about1.jpg" />
-      <img src="../../assets/img/about/about2.jpg" />
-      <img src="../../assets/img/about/about3.jpg" />
-      <img src="../../assets/img/about/about4.jpg" />
+      <img src="@/assets/img/about/introduce.jpg" />
+      <img src="@/assets/img/about/about1.jpg" />
+      <img src="@/assets/img/about/about2.jpg" />
+      <img src="@/assets/img/about/about3.jpg" />
+      <img src="@/assets/img/about/about4.jpg" />
     </div>
   </div>
 </template>
@@ -14,7 +14,7 @@
 import NavBar from "@/components/nav/NavBar.vue";
 export default {
   name: "AboutPage",
-  comments: { NavBar },
+  components: { NavBar },
   inject: ["tabBar"],
   activated() {
     const { tabBar } = this;

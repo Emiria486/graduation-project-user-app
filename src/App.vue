@@ -1,7 +1,7 @@
 <!--
  * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @Date: 2024-03-16 10:18:01
- * @LastEditTime: 2024-03-25 10:47:25
+ * @LastEditTime: 2024-03-25 15:20:22
  * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @FilePath: \user-app\src\App.vue
  * @Description: 头部注释配置模板
@@ -37,7 +37,7 @@ export default {
         show: true,
       },
     };
-  },
+  }
 };
 </script>
 

@@ -1,10 +1,10 @@
 <template>
   <div class="Home">
-    <NavBar title="餐饮" :border="false">
+    <NavBar title="师大餐饮" :border="false">
       <template #left>
         <div class="navBar-left" @click="showPicker = true">
-          <van-icon name="location-o" size="16" color="#fff" />
-          <span class="location">{{ location }}</span>
+          <van-icon name="location-o" />
+          <span>{{ location }}</span>
         </div>
       </template>
     </NavBar>
@@ -84,7 +84,7 @@ export default {
         { name: "东苑分店", lng: 109.454649, lat: 24.337818, distance: 0 },
       ],
       propaganda: {
-        title: "放心吃饭行动",
+        title: "放心吃饭315",
         banner: banner,
       },
     };

@@ -28,11 +28,6 @@
           placeholder="邮箱"
         />
         <form-box-input
-          v-model="registerForm.email"
-          icon="envelop-o"
-          placeholder="邮箱"
-        />
-        <form-box-input
           v-model="registerForm.phone"
           icon="phone-o"
           placeholder="电话号码"

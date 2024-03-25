@@ -1,11 +1,3 @@
-<!--
- * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
- * @Date: 2024-03-24 08:09:49
- * @LastEditTime: 2024-03-24 08:42:20
- * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
- * @FilePath: \user-app\src\components\form-box\form-box-input.vue
- * @Description: 表格输入组件
--->
 <template>
   <div class="form-box-input" :class="{ focus: isFocus }">
     <van-icon :name="icon" v-if="icon" />
@@ -23,7 +15,7 @@
 
 <script>
 export default {
-  name: "FormBoxInput",
+  name: "form-box-input",
   props: {
     type: {
       type: String,
@@ -56,16 +48,16 @@ export default {
     autocompleteTransform() {
       return this.autocomplete ? "on" : "off";
     },
-    methods: {
-      handleInput(event) {
-        this.$emit("input", event.target.value);
-      },
-      handleFocus() {
-        this.isFocus = true;
-      },
-      handleBlur() {
-        this.isFocus = false;
-      },
+  },
+  methods: {
+    handleInput(event) {
+      this.$emit("input", event.target.value);
+    },
+    handleFocus() {
+      this.isFocus = true;
+    },
+    handleBlur() {
+      this.isFocus = false;
     },
   },
 };

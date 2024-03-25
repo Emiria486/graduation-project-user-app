@@ -15,8 +15,8 @@
     </van-nav-bar>
   </div>
 </template>
-  
-  <script>
+
+<script>
 export default {
   name: "NavBar",
   props: {

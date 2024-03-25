@@ -1,6 +1,6 @@
 <template>
   <div class="order">
-    <NavBar title="科大餐饮" :border="false">
+    <NavBar title="师大餐饮" :border="false">
       <template #left>
         <div class="navBar-left" @click="goBack">
           <van-icon name="arrow-left" />

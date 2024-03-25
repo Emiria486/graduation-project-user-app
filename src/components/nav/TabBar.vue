@@ -22,9 +22,9 @@ export default {
     };
   },
   watch: {
+    // eslint-disable-next-line no-unused-vars
     $route(to, from) {
       this.initActive(to.path);
-      console.log("from路径", from);
     },
   },
   created() {
