@@ -1,0 +1,38 @@
+.order .van-card {
+  background: white;
+}
+.order .van-card__thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.order .QRCodeImg {
+  width: 70%;
+  height: 70%;
+}
+.order .van-popup {
+  width: 100vw;
+  height: 100vh;
+  background: #f7f8fa;
+}
+.order-popup {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+.order-popup .qrcode-use-tip {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+.order-popup .qrcode {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+.order-popup-details {
+  margin: 20px 0 60px 0;
+}
+.order-confirm-button {
+  width: 80px;
+}

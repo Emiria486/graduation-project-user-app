@@ -1,0 +1,21 @@
+@transparentBg: rgba(255, 255, 255, 0);
+@navBarH: 50px;
+.About {
+    .NavBar {
+      width: 100%;
+      background-color: @transparentBg;
+  
+      .van-nav-bar {
+        background-color: @transparentBg;
+      }
+      .van-nav-bar__title {
+        color: #fff;
+      }
+    }
+    .content {
+      margin: -@navBarH 0 @navBarH 0;
+      & > img {
+        width: 100%;
+      }
+    }
+  }

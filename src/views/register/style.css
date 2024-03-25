@@ -1,0 +1,41 @@
+.register-header {
+  position: relative;
+  width: 100vw;
+  height: 220px;
+}
+.register-header::before {
+  content: "";
+  display: block;
+  overflow: hidden;
+}
+.register-header-back {
+  position: relative;
+  z-index: 9;
+  display: inline-flex;
+  margin: 10px 0 0 10px;
+}
+.register-header-back .van-icon {
+  font-size: 1rem;
+  margin-right: 5px;
+}
+.register-container {
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 20px 40px;
+}
+.register-container .van-button {
+  margin-top: 20px;
+}
+.register-footer {
+  margin: 30px 0;
+  text-align: center;
+  font-size: 16px;
+  color: #a4b0be;
+}
+.register-footer a {
+  font-weight: 700;
+  color: #2d3436;
+}
+.register-footer a:active {
+  color: #48dbfb;
+}

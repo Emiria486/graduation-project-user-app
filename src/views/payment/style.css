@@ -1,0 +1,109 @@
+.payment {
+  padding-bottom: 100px;
+}
+.payment-card {
+  margin: 0;
+  background-color: #fff;
+}
+.payment-card-delete {
+  height: 100%;
+}
+.payment-card .van-card-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+.payment-user .van-cell__value {
+  display: flex;
+  align-items: center;
+}
+.payment-user-modify {
+  padding: 10px;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.payment-user-icon.img {
+  width: 18px;
+}
+.payment-user-icon {
+  padding-right: 8px;
+}
+.payment-user-info {
+  width: 80%;
+  padding: 0 10px;
+  font-size: 14px;
+}
+.payment-user-info-bottom {
+  width: 100%;
+}
+.payment-user-info-top {
+  display: flex;
+}
+.payment-user-info .phone,
+.payment-user-info .name,
+.payment-user-info .address {
+  display: flex;
+  align-items: center;
+}
+.payment-user-info .phone {
+  margin-left: 20px;
+}
+.payment-user-info .address {
+  width: 100%;
+}
+.payment-user-info .address-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.payment-user-info-bottom {
+  margin-top: 6px;
+}
+.payment .popup-payment {
+  top: 35%;
+  width: 85%;
+  max-width: 400px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.payment .popup-payment .van-password-input {
+  width: 90%;
+}
+.payment .popup-payment .van-password-input__item {
+  background-color: #f7f8fa;
+}
+.payment .popup-payment .van-password-input i {
+  padding: 0;
+}
+.payment .popup-payment .payment-way {
+  margin-top: 20px;
+  font-size: 14px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+.payment .popup-payment .payment-way-selection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.payment .popup-payment .payment-way-icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+}
+.payment .popup-payment .payment-button {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+.payment .popup-payment .payment-button .van-button {
+  width: 90%;
+}
+.payment .van-number-keyboard {
+  z-index: 9999;
+}

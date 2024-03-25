@@ -1,28 +1,46 @@
+<!--
+ * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @Date: 2024-03-16 10:18:01
+ * @LastEditTime: 2024-03-25 10:47:25
+ * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @FilePath: \user-app\src\App.vue
+ * @Description: 头部注释配置模板
+-->
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div id="content" class="outer-container">
+      <keep-alive include="About">
+        <router-view></router-view>
+      </keep-alive>
+    </div>
+    <div id="tabBar" v-if="tabBar.show">
+      <TabBar></TabBar>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import TabBar from "./components/nav/TabBar.vue";
 export default {
-  name: 'App',
+  name: "App",
+  provide() {
+    return {
+      tabBar: this.tabBar,
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    TabBar,
+  },
+  data() {
+    return {
+      tabBar: {
+        show: true,
+      },
+    };
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import url("./assets/css/base.css");
 </style>

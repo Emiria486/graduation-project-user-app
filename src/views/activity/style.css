@@ -1,0 +1,49 @@
+.activity-coupon {
+  display: flex;
+  align-items: center;
+  padding: 15px 10px;
+  padding-right: 20px;
+}
+.activity-coupon-button {
+  width: 80px;
+}
+.activity-coupon-info {
+  flex-grow: 1;
+  padding: 5px;
+  font-size: 14px;
+}
+.activity-coupon-info {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.activity-coupon-info .money {
+  padding: 5px;
+  width: 30%;
+  color: #ee0a24;
+}
+.activity-coupon-info .money .discount {
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+}
+.activity-coupon-info .money .discount span {
+  font-size: 24px;
+  font-weight: 700;
+}
+.activity-coupon-info .money .useLimit {
+  margin-top: 8px;
+  font-size: 12px;
+}
+.activity-coupon-info .description {
+  width: 70%;
+}
+.activity-coupon-info .description .title {
+  height: 24px;
+  line-height: 24px;
+  font-weight: 700;
+}
+.activity-coupon-info .description .expire {
+  margin-top: 8px;
+  font-family: "华文仿宋";
+}

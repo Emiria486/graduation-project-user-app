@@ -1,0 +1,141 @@
+.order-food .navBar-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.order-food .navBar-left .van-icon {
+  color: black;
+}
+.order-food i {
+  padding-right: 5px;
+}
+.order-food-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 120px;
+}
+.order-food-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 16vw;
+  height: 80px;
+  margin-right: 3vw;
+  border-radius: 8px;
+  color: #34495e;
+  background: #e6e6e6;
+  transition: background 0.3s, color 0.3s;
+}
+.order-food-date.active {
+  color: white;
+  background: #fe4e36;
+}
+.order-food-date__week {
+  font-size: 18px;
+}
+.order-food-date__time {
+  margin-top: 10px;
+  font-size: 12px;
+}
+.order-food-date:last-child {
+  margin: 0;
+}
+.order-food-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 80px;
+}
+.order-food-item {
+  padding: 0 10px 0 20px;
+  margin-top: 20px;
+  box-sizing: border-box;
+  width: 50vw;
+  height: 190px;
+  text-align: center;
+}
+.order-food-item:nth-child(2n) {
+  padding: 0 20px 0 10px;
+}
+.order-food-item__floor {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+  border-radius: 10px;
+  border: 1px solid #fdcb6e;
+  font-size: 14px;
+}
+.order-food-item-introduction {
+  height: 160px;
+  border-radius: 5px;
+  background-color: #faece5;
+}
+.order-food-item-name {
+  margin: 5px 0;
+}
+.order-food-item-footer {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.order-food-item-price {
+  color: #df3636;
+}
+.order-food .tag {
+  position: fixed;
+  bottom: 5px;
+  right: 10px;
+}
+.order-food .tag .van-tag {
+  display: block;
+  width: 40px;
+  margin-bottom: 5px;
+  font-size: 12px;
+  border: 1px solid #fdcb6e;
+  border-radius: 5px;
+  text-align: center;
+}
+.order-food .shopCart {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  width: 220px;
+  height: 45px;
+  border-radius: 25px;
+  color: white;
+  background-color: #fdcb6e;
+}
+.order-food .shopCart .totle-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  background-color: #333;
+  border-radius: 25px 0 0 25px;
+}
+.order-food .shopCart .totle-price .van-icon {
+  font-size: 22px;
+}
+.order-food .shopCart .totle-price .price-text {
+  margin-left: 10px;
+  font-size: 16px;
+}
+.order-food .shopCart .payment-button {
+  flex-grow: 1;
+  padding-right: 5px;
+  text-align: center;
+  line-height: 45px;
+  background-color: #ff0000;
+  border-radius: 0 25px 25px 0;
+  font-size: 14px;
+}
+.order-food .van-popup {
+  padding-top: 20px;
+  box-sizing: border-box;
+  background: #f7f8fa;
+}

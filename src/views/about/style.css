@@ -1,0 +1,16 @@
+.About .NavBar {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0);
+}
+.About .NavBar .van-nav-bar {
+  background-color: rgba(255, 255, 255, 0);
+}
+.About .NavBar .van-nav-bar__title {
+  color: #fff;
+}
+.About .content {
+  margin: -50px 0 50px 0;
+}
+.About .content > img {
+  width: 100%;
+}

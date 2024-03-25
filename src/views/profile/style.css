@@ -1,0 +1,97 @@
+.Profile .NavBar {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0);
+}
+.Profile .NavBar .van-nav-bar {
+  background-color: rgba(255, 255, 255, 0);
+}
+.Profile .NavBar .van-nav-bar__title {
+  color: #fff;
+}
+.Profile .floor {
+  margin-top: -50px;
+  width: 100%;
+  height: 60vw;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #ef0d00, #f74321, #f94e29, #fc5f35, #ff6348);
+}
+.Profile .floor .van-image {
+  margin-left: 5vw;
+}
+.Profile .floor > a {
+  color: white;
+  margin-left: 5vw;
+}
+.Profile .floor > .info {
+  margin-left: 5vw;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+.Profile .floor > .info .username {
+  margin-bottom: 8px;
+}
+.Profile .account {
+  margin: -15vw auto 5vw;
+  width: 90%;
+  height: 30vw;
+  border-radius: 12px;
+  box-shadow: 0 3px 3px #dcdde1;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.Profile .account > .item {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #606266;
+  font-size: 14px;
+}
+.Profile .account > .item .number {
+  margin-bottom: 4vw;
+  font-size: 24px;
+  font-weight: 700;
+}
+.Profile .account > .item .number > font {
+  font-size: 12px;
+}
+.Profile .tool {
+  padding: 0 5vw;
+  margin-top: 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.Profile .tool:after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden;
+}
+.Profile .tool-title {
+  font-size: 22px;
+  font-weight: 700;
+}
+.Profile .tool-content {
+  margin-top: 20px;
+}
+.Profile .tool-content-item {
+  float: left;
+  width: 22.5vw;
+  height: 22.5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+.Profile .tool-content-item > img {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 3vw;
+}

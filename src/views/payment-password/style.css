@@ -1,0 +1,32 @@
+.payment-password {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+.payment-password-content {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.payment-password-content .description {
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+.payment-password-content .van-password-input {
+  width: 90%;
+}
+.payment-password-content .van-password-input i {
+  padding: 0;
+}
+.payment-password-content .van-button {
+  margin-top: 24px;
+  width: 120px;
+}
+.payment-password-content.popup {
+  margin-top: 146px;
+}
+.payment-password .update-popup {
+  background-color: #f7f8fa;
+}
