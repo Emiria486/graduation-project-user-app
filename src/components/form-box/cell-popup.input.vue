@@ -114,5 +114,9 @@ export default {
     width: 80%;
     margin: 0 auto 0;
   }
+  .van-button {
+    margin-top: 10%;
+    margin-left: 80%;
+  }
 }
 </style>

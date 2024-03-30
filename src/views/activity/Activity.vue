@@ -1,3 +1,11 @@
+<!--
+ * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @Date: 2024-03-24 09:56:23
+ * @LastEditTime: 2024-03-30 15:46:35
+ * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @FilePath: \user-app\src\views\activity\Activity.vue
+ * @Description: 用户领取优惠券见面（已通过api测试）
+-->
 <template>
   <div class="activity">
     <NavBar title="近期活动" :back="true"></NavBar>
@@ -7,17 +15,17 @@
           <div class="activity-coupon-info">
             <div class="money">
               <div class="discount">
-                <span> {{ coupon.discount | priceFormat }} </span>元
+                <span> {{ coupon.discount | priceFormat }} </span>
               </div>
               <div class="useLimit">
-                门槛：{{ coupon.use_limit | priceFormat }}元
+                门槛：{{ coupon.limit | priceFormat }}元
               </div>
             </div>
             <div class="description">
               <div class="title">{{ coupon.title }}</div>
               <div class="expire">
-                {{ coupon.create_time | timeFormat }}-
-                {{ coupon.expireIn | timeFormat }}
+                {{ coupon.create_time | timeFormat }}
+                剩余有效期：{{ coupon.expirein }}天
               </div>
             </div>
           </div>
@@ -65,11 +73,21 @@ export default {
       return `${year}-${month}-${day}`;
     },
     priceFormat(value) {
-      return value.toFixed(2);
+      return parseFloat(value).toFixed(2);
     },
   },
+  watch: {
+    coupon(newValue) {
+      if (newValue.status == 1) {
+        this.$set(newValue, "userHold", true);
+      } else {
+        this.$set(newValue, "userHold", false);
+      }
+    },
+    deep: true,
+  },
   async mounted() {
-    this.coupons = (await getIssueCoupons()).data;
+    this.coupons = (await getIssueCoupons({ date: 1 })).data;
     //添加用户持有状态
     if (localStorage.getItem("token") && this.coupons.length !== 0) {
       const userCoupons = (await getUserCoupons()).data;
@@ -92,7 +110,7 @@ export default {
   },
   methods: {
     async receive(coupon_id) {
-      const res = await addUserCoupon({ coupon_id });
+      const res = await addUserCoupon({ coupon_id: coupon_id });
       if (res) {
         this.$toast.success("优惠券领取成功");
       }

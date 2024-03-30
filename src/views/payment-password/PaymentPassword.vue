@@ -1,3 +1,11 @@
+<!--
+ * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @Date: 2024-03-24 16:34:50
+ * @LastEditTime: 2024-03-30 16:34:28
+ * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @FilePath: \user-app\src\views\payment-password\PaymentPassword.vue
+ * @Description: 用户支付密码页面（已通过api测试）
+-->
 <template>
   <div class="payment-password">
     <NavBar title="支付密码" :back="true"> </NavBar>
@@ -78,12 +86,14 @@ import {
   validatePaymentPass,
   updatePaymentPass,
 } from "@/service/user";
+import AESHelper from "@/utils/AEShelper";
 export default {
   name: "PaymentPassword",
+  inject: ["tabBar"],
   components: {
     NavBar,
   },
-  date() {
+  data() {
     return {
       paymentPassExist: false,
       payment_password: "",
@@ -124,7 +134,9 @@ export default {
     },
   },
   async created() {
-    this.payment_password = (await isPaymentPassExist()).data.isExist;
+    this.paymentPassExist = (await isPaymentPassExist()).data.isExist;
+    // 消除底部的tab栏
+    this.tabBar.show = false;
   },
   methods: {
     hanldePopupOpen() {
@@ -137,7 +149,7 @@ export default {
     },
     async validatePass() {
       const res = await validatePaymentPass({
-        payment_password: this.payment_password,
+        payment_password: AESHelper.encrypt(this.payment_password),
       });
       if (res.status) {
         this.showPopup = true;
@@ -145,7 +157,7 @@ export default {
     },
     async updatePass() {
       const res = await updatePaymentPass({
-        payment_password: this.newPaymentPass,
+        payment_password: AESHelper.encrypt(this.newPaymentPass),
       });
       if (res.status) {
         this.$toast.success("支付密码修改成功");
@@ -154,7 +166,7 @@ export default {
     },
     async settingPaymentPass() {
       const res = await updatePaymentPass({
-        payment_password: this.payment_password,
+        payment_password: AESHelper.encrypt(this.payment_password),
       });
       if (res.status) {
         this.$toast.success("支付密码设置成功");

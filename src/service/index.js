@@ -12,7 +12,7 @@ import {
 } from 'vant'
 export const API_BASE_URL = "http://127.0.0.1:4396/app"
 
-export const RESOURCES_BASE_URL = 'http://127.0.0.1:4396/static/App'
+export const RESOURCES_BASE_URL = 'http://127.0.0.1:4396/static/app'
 
 export function axiosInstance(config) {
     const instance = axios.create({

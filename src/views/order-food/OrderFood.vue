@@ -1,17 +1,16 @@
+<!--
+ * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @Date: 2024-03-24 16:03:37
+ * @LastEditTime: 2024-03-29 23:22:07
+ * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @FilePath: \user-app\src\views\order-food\OrderFood.vue
+ * @Description: 用户点单页面，基本UI功能修复完毕
+-->
 <template>
   <div class="order-food">
     <NavBar title="餐饮预订" :back="true"></NavBar>
     <div class="order-food-header">
-      <div
-        v-for="(tab, index) in tabs"
-        :key="index"
-        class="order-food-date"
-        :class="{ active: currentTab === tab }"
-        @click="currentTab = tab"
-      >
-        <div class="order-food-date__week">{{ tab | week }}</div>
-        <div class="order-food-date__time">{{ tab | date }}</div>
-      </div>
+      <div class="order-food-date__week">今日{{ weekDate }}菜单</div>
     </div>
     <div class="order-food-container">
       <div
@@ -26,6 +25,11 @@
           >
             <van-image width="120" height="120" :src="food.image" />
             <div class="order-food-item-name">{{ food.food_name }}</div>
+            <van-tag
+              size="medium"
+              :color="food.status ? '#13c0ab' : '#d44d44'"
+              >{{ food.status ? "在售" : "不在售" }}</van-tag
+            >
           </div>
           <div class="order-food-item-footer">
             <div class="order-food-item-price">{{ food.price | price }}</div>
@@ -39,13 +43,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <!-- toolBar -->
-    <div class="tag">
-      <van-tag color="#faece5" size="medium" text-color="#636e72">在售</van-tag>
-      <van-tag color="#eafde8" size="medium" text-color="#636e72"
-        >不在售</van-tag
-      >
     </div>
     <div class="shopCart">
       <div class="totle-price">
@@ -85,11 +82,12 @@ export default {
       return dateWithoutYear(value);
     },
     price(value) {
-      return `￥${value.toFixed(2)}`;
+      return `￥${parseFloat(value).toFixed(2)}`;
     },
   },
   data() {
     return {
+      weekDate: weekFormat(new Date()),
       foods: [],
       currentTab: "",
       orderShow: false,
@@ -121,7 +119,7 @@ export default {
       handler(value) {
         console.log("当前的currentFoods值", value);
         const selection = this.currentFoods.filter((food) => food.step !== 0);
-        this.$store.commit("changeSelectedFood", selection);
+        this.$store.commit("changeSelectedFoods", selection);
       },
       deep: true,
     },
@@ -149,7 +147,8 @@ export default {
     },
   },
   async mounted() {
-    this.foods = (await getFoods()).data;
+    this.foods = (await getFoods({ date: weekFormat(new Date()) })).data;
+    console.log("mounted", this.foods);
     this.foods.forEach((food) => {
       this.$set(food, "step", 0);
     });

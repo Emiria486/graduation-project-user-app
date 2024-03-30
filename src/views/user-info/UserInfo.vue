@@ -1,3 +1,11 @@
+<!--
+ * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @Date: 2024-03-25 09:41:58
+ * @LastEditTime: 2024-03-30 16:08:33
+ * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @FilePath: \user-app\src\views\user-info\UserInfo.vue
+ * @Description: 位于setting里面的用户详细信息页面(已通过api测试)
+-->
 <template>
   <div class="user-info">
     <NavBar title="个人信息" :back="true"></NavBar>
@@ -9,7 +17,7 @@
       <van-cell-group title="基础信息" :border="false">
         <van-cell
           title="id"
-          :value="user.user_id"
+          :value="user.userId"
           clickable
           @click="notModify"
         ></van-cell>
@@ -60,7 +68,7 @@ export default {
       reset: false,
       user: {
         avatar: "",
-        user_id: "",
+        userId: 0,
         username: "",
         phone: "",
         address: "",
@@ -75,8 +83,9 @@ export default {
   },
   async mounted() {
     this.user = (await getUserInfo()).data;
+    console.log("this.user", this.user);
     //在数据加载完毕后添加监听
-    this.$$watch("user", {
+    this.$watch("user", {
       handler() {
         this.updateButton.disabled = false;
       },
@@ -89,7 +98,7 @@ export default {
     },
     notModify() {
       this.$toast({
-        message: "学号不可修改",
+        message: "ID不可修改",
         position: "bottom",
       });
     },

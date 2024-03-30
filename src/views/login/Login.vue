@@ -1,3 +1,11 @@
+<!--
+ * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @Date: 2024-03-24 15:15:59
+ * @LastEditTime: 2024-03-29 22:18:23
+ * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @FilePath: \user-app\src\views\login\Login.vue
+ * @Description: 用户登录页面（已测试api通过）
+-->
 <template>
   <div class="login">
     <div ref="header" class="login-header">
@@ -40,6 +48,7 @@ import HeaderBackground from "@/components/canvas/header-background";
 import FormBox from "@/components/form-box/form-box.vue";
 import FormBoxInput from "@/components/form-box/form-box-input.vue";
 import { userLogin } from "@/service/login";
+import AESHelper from "@/utils/AEShelper";
 
 export default {
   name: "LoginPage",
@@ -60,11 +69,15 @@ export default {
   },
   methods: {
     async login() {
+      console.log("login", this.loginForm.username, this.loginForm.password);
+      let encryptPassword = AESHelper.encrypt(this.loginForm.password);
+      console.log("password", encryptPassword);
       const res = await userLogin({
-        studentId: this.loginForm.studentId,
-        password: this.loginForm.password,
+        username: this.loginForm.username,
+        password: encryptPassword,
       });
       if (res.status) {
+        this.$toast({ message: res.message, type: "success" });
         localStorage.setItem("token", res.data.token);
         this.$router.push("/profile");
       }

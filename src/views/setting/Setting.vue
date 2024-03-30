@@ -1,3 +1,11 @@
+<!--
+ * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @Date: 2024-03-24 20:20:15
+ * @LastEditTime: 2024-03-30 16:43:27
+ * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @FilePath: \user-app\src\views\setting\Setting.vue
+ * @Description: 用户设置页（已测试通过）
+-->
 <template>
   <div class="setting">
     <NavBar title="设置" :back="true"></NavBar>
@@ -16,7 +24,7 @@
       </van-cell>
     </van-cell-group>
     <van-cell-group title="账号" :border="false">
-      <van-cell title="切换账号" clickable to="/login">
+      <van-cell title="切换账号" clickable @click="switchAccount">
         <template #icon>
           <i class="iconfont icon-exchange" />
         </template>
@@ -58,6 +66,10 @@ export default {
         });
       }
     },
+    switchAccount() {
+      localStorage.removeItem("token");
+      this.$router.push("/login");
+    },
     loginOut() {
       if (localStorage.getItem("token")) {
         this.$dialog
@@ -68,6 +80,11 @@ export default {
           .then(() => {
             localStorage.removeItem("token");
             this.$router.push("/");
+          })
+          .catch(() => {
+            this.$toast({
+              message: "不要离开我~",
+            });
           });
       } else {
         this.$toast({

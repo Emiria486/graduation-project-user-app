@@ -4,11 +4,13 @@
  * @LastEditTime: 2024-03-24 09:42:53
  * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @FilePath: \user-app\src\utils\AEShelper.js
- * @Description: 头部注释配置模板
+ * @Description: AES加密模块
  */
-import * as CryptoJS from "crypto-js"
-export default class AESHelper {
-    privateKey = "liuyongjie"
+var CryptoJS = require("crypto-js");
+
+export default
+class AESHelper {
+    static privateKey = 'liuyongjie'
     /**
      * Description AES加密函数
      * @param {any} word:string 需要加密的字符串

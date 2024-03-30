@@ -6,6 +6,12 @@
 .order-food .navBar-left .van-icon {
   color: black;
 }
+.order-food .order-food-header {
+  background-color: #fdcb6e;
+  background-image: url('../../assets/img/background/lunch.png');
+  background-size: cover;
+  font-size: 24px;
+}
 .order-food i {
   padding-right: 5px;
 }
@@ -104,7 +110,7 @@
   bottom: 10px;
   left: 10px;
   display: flex;
-  width: 220px;
+  width: 100%;
   height: 45px;
   border-radius: 25px;
   color: white;
@@ -114,7 +120,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 140px;
+  width: 250px;
   background-color: #333;
   border-radius: 25px 0 0 25px;
 }
@@ -127,6 +133,7 @@
 }
 .order-food .shopCart .payment-button {
   flex-grow: 1;
+  width: 20%;
   padding-right: 5px;
   text-align: center;
   line-height: 45px;

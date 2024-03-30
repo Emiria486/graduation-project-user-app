@@ -3,7 +3,7 @@
     <NavBar title="师大餐饮" :border="false">
       <template #left>
         <div class="navBar-left" @click="showPicker = true">
-          <van-icon name="location-o" />
+          <van-icon name="location-o" size="16" />
           <span>{{ location }}</span>
         </div>
       </template>
@@ -79,9 +79,9 @@ export default {
       distanceIndex: 0,
       location: "定位中",
       locations: [
-        { name: "龙湖分店", lng: 109.447206, lat: 24.339539, distance: 0 },
-        { name: "西苑分店", lng: 109.452883, lat: 24.340061, distance: 0 },
-        { name: "东苑分店", lng: 109.454649, lat: 24.337818, distance: 0 },
+        { name: "第三食堂分店", lng: 104.211598, lat: 30.569171, distance: 0 },
+        { name: "西苑分店", lng: 104.204598, lat: 30.572892, distance: 0 },
+        { name: "东苑分店", lng: 104.210736, lat: 30.568546, distance: 0 },
       ],
       propaganda: {
         title: "放心吃饭315",
@@ -112,6 +112,7 @@ export default {
   methods: {
     pageJump() {
       this.$router.push("/order-food");
+      this.tabBar.show=false
     },
     getLocation() {
       //利用百度地图获取当前经纬度
