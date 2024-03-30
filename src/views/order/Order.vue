@@ -1,3 +1,11 @@
+<!--
+ * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @Date: 2024-03-24 15:29:42
+ * @LastEditTime: 2024-03-30 19:15:28
+ * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @FilePath: \user-app\src\views\order\Order.vue
+ * @Description: 用户支付券码页面（已通过api测试）
+-->
 <template>
   <div class="order">
     <NavBar title="师大餐饮" :border="false">
@@ -16,7 +24,7 @@
         :title="item.create_time | dateFormat"
       >
         <van-card
-          :price="item.price.toFixed(2)"
+          :price="parseFloat(item.price).toFixed(2)"
           :tag="item.order_type | orderType"
           :desc="item.foods | description"
           :title="'订单编号：' + item.order_id"
@@ -54,7 +62,7 @@
         <span class="qrcode-use-tip">以此二维码扫码取餐</span>
         <div class="order-popup-details">
           <van-cell-group title="商家联系方式：">
-            <van-cell icon="phone">{{ currentOrder.admin_phone }}</van-cell>
+            <van-cell icon="phone">{{ adminInfo.phone }}</van-cell>
           </van-cell-group>
           <van-cell-group title="配送信息">
             <van-cell
@@ -67,7 +75,10 @@
                 <i class="iconfont icon-address"></i>
               </template>
             </van-cell>
-            <van-cell title="订单类型" :value="currentOrder.status | orderType">
+            <van-cell
+              title="订单类型"
+              :value="currentOrder.order_type | orderType"
+            >
               <template #icon>
                 <i class="iconfont icon-type"></i>
               </template>
@@ -105,7 +116,7 @@ import NavBar from "@/components/nav/NavBar.vue";
 import QRCode from "qrcodejs2";
 import { getOrder } from "@/service/order";
 import { dateFormat } from "@/utils/format";
-import { getUserInfo } from "@/service/user";
+import { getUserInfo, getAdminInfo } from "@/service/user";
 export default {
   name: "OrderPage",
   components: {
@@ -135,7 +146,7 @@ export default {
       return description.slice(0, -1);
     },
     price(value) {
-      return `￥${value.toFixed(2)}`;
+      return `￥${parseFloat(value).toFixed(2)}`;
     },
   },
   data() {
@@ -145,6 +156,7 @@ export default {
       user: {},
       qrCode: "",
       currentOrder: "",
+      adminInfo: {},
     };
   },
   methods: {
@@ -192,14 +204,23 @@ export default {
       getOrder(),
       getUserInfo(),
     ]);
-
+    this.adminInfo = (await getAdminInfo()).data;
     const { orderFoods, orders } = orderResponse.data;
     this.user = userResponse.data;
+    console.log(
+      "Order页面的orderFoods,orders,user",
+      orderFoods,
+      orders,
+      this.user
+    );
     // 合并
     orders.forEach((order) => {
-      const foods = orderFoods.find(
+      const foods = [];
+      const itemFood = orderFoods.find(
         (item) => item.order_id === order.order_id
       ).food;
+      foods.push(itemFood);
+      console.log("filter后", foods);
       order.foods = foods;
       order.foodTotal = foods.reduce(
         (total, currentValue) => (total += currentValue.number),

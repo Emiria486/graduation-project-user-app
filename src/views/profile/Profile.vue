@@ -1,3 +1,11 @@
+<!--
+ * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @Date: 2024-03-24 19:35:47
+ * @LastEditTime: 2024-03-30 19:55:31
+ * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @FilePath: \user-app\src\views\profile\Profile.vue
+ * @Description: 用户“我的”tab总界面（已api测试通过）
+-->
 <template>
   <div class="Profile">
     <NavBar title="我的" :border="false"></NavBar>
@@ -25,8 +33,8 @@
         <span>我的优惠券</span>
       </div>
       <div class="order item">
-        <span class="number">{{ user.order }}</span>
-        <span>本月订单</span>
+        <span class="number">{{ user.allOrderNum }}</span>
+        <span>消费次数</span>
       </div>
     </div>
     <div class="tool">
@@ -50,7 +58,7 @@
         </li>
         <li class="tool-content-item" @click="jump('/order')">
           <img src="@/assets/img/icon/invoice.png" alt="" />
-          <span>发票汇总</span>
+          <span>出示支付码</span>
         </li>
         <li class="tool-content-item" @click="jump('/setting')">
           <img src="@/assets/img/icon/setting.png" alt="" />
@@ -95,6 +103,7 @@ export default {
     tabBar.show = true;
     if (localStorage.getItem("token")) {
       this.user = (await getUserInfo()).data;
+      console.log("profile", this.user);
     }
   },
   destroyed() {

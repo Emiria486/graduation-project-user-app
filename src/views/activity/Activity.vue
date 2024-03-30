@@ -1,10 +1,10 @@
 <!--
  * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @Date: 2024-03-24 09:56:23
- * @LastEditTime: 2024-03-30 15:46:35
+ * @LastEditTime: 2024-03-30 17:53:40
  * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @FilePath: \user-app\src\views\activity\Activity.vue
- * @Description: 用户领取优惠券见面（已通过api测试）
+ * @Description: 用户领取优惠券界面（已通过api测试）
 -->
 <template>
   <div class="activity">
@@ -76,16 +76,6 @@ export default {
       return parseFloat(value).toFixed(2);
     },
   },
-  watch: {
-    coupon(newValue) {
-      if (newValue.status == 1) {
-        this.$set(newValue, "userHold", true);
-      } else {
-        this.$set(newValue, "userHold", false);
-      }
-    },
-    deep: true,
-  },
   async mounted() {
     this.coupons = (await getIssueCoupons({ date: 1 })).data;
     //添加用户持有状态
@@ -114,6 +104,11 @@ export default {
       if (res) {
         this.$toast.success("优惠券领取成功");
       }
+      this.coupons.forEach((coupon) => {
+        if ((coupon.coupon_id === coupon_id)) {
+          this.$set(coupon, "userHold", true);
+        }
+      });
     },
     buttonName(userHold) {
       return userHold ? "已领取" : "领取";

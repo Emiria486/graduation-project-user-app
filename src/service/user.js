@@ -1,7 +1,12 @@
 import {
     axiosInstance
 } from './index'
-
+export function getAdminInfo() {
+    return axiosInstance({
+        url: "/admin-info",
+        method: "get"
+    })
+}
 export function getUserInfo() {
     return axiosInstance({
         url: "/user_info",

@@ -1,6 +1,14 @@
+<!--
+ * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @Date: 2024-03-24 17:38:26
+ * @LastEditTime: 2024-03-30 20:34:19
+ * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
+ * @FilePath: \user-app\src\views\payment\Payment.vue
+ * @Description: 用户支付界面（还剩优惠劵的部分没有处理）
+-->
 <template>
   <div class="payment">
-    <NavBar title="餐饮" :border="false" :back="true"></NavBar>
+    <NavBar title="师大餐饮" :border="false" :back="true"></NavBar>
     <van-cell-group title="配送地址">
       <van-cell class="payment-user">
         <div class="payment-user-info">
@@ -40,8 +48,8 @@
     <van-cell-group title="就餐方式">
       <van-cell
         is-link
-        :title="orderType | orderTypeFilter"
-        :value="orderTypePrice | orderTypePriceFilter"
+        :title="orderType"
+        :value="orderTypePrice"
         @click="diningStylePopup = true"
         :style="{ color: unprocessedColor(orderType) }"
       />
@@ -85,6 +93,7 @@
       </van-swipe-cell>
     </van-cell-group>
     <van-cell-group title="优惠券">
+      <!-- 优惠券的弹出层 -->
       <van-coupon-cell
         :coupons="coupons"
         :chosen-coupon="chosenCoupon"
@@ -105,6 +114,7 @@
         />
       </van-popup>
     </van-cell-group>
+    <!-- 金额合计 -->
     <van-submit-bar
       :price="total"
       button-text="付款"
@@ -179,7 +189,7 @@ export default {
       return value === "" ? "请选择" : value;
     },
     orderTypePriceFilter(value) {
-      return value === "" ? "" : `￥${value.toFixed(2)}`;
+      return value === "" ? "" : `￥${parseFloat(value).toFixed(2)}`;
     },
   },
   data() {
@@ -196,7 +206,7 @@ export default {
       user: "",
       diningStylePopup: false,
       orderType: "",
-      orderTypePrice: "",
+      orderTypePrice: 0,
       orderTypeActions: [],
       isDisabled: true,
     };
@@ -241,7 +251,7 @@ export default {
     this.user = (await getUserInfo()).data;
     this.orderTypeActions = (await getOrderTypes()).data;
     this.orderTypeActions.forEach((item) => {
-      this.$set(item, "name", this.transformValue(item.value));
+      this.$set(item, "name", this.transformValue(item.order_type_id));
     });
     let res = (await getUserCoupons()).data;
     res = res.filter((item) => item.status); //筛选没用过的coupon
@@ -336,7 +346,7 @@ export default {
     },
     onSelect(item) {
       this.orderType = item.name;
-      this.orderTypePrice = item.price;
+      this.orderTypePrice = item.order_type_id;
       this.diningStylePopup = false;
     },
     unprocessedColor(item) {

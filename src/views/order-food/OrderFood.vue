@@ -4,7 +4,7 @@
  * @LastEditTime: 2024-03-29 23:22:07
  * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @FilePath: \user-app\src\views\order-food\OrderFood.vue
- * @Description: 用户点单页面，基本UI功能修复完毕
+ * @Description: 用户点单页面，基本UI功能修复完毕(已测试通过)
 -->
 <template>
   <div class="order-food">
