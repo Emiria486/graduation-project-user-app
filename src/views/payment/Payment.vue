@@ -1,10 +1,10 @@
 <!--
  * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @Date: 2024-03-24 17:38:26
- * @LastEditTime: 2024-03-30 20:34:19
+ * @LastEditTime: 2024-03-31 16:53:44
  * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @FilePath: \user-app\src\views\payment\Payment.vue
- * @Description: 用户支付界面（还剩优惠劵的部分没有处理）
+ * @Description: 用户支付界面（已通过api测试）
 -->
 <template>
   <div class="payment">
@@ -176,6 +176,8 @@ import {
 } from "@/service/user";
 import { getOrderTypes } from "@/service/order";
 import { orderSocket } from "@/service/socket";
+import { timeToTimestamp, get_expirein_time, dateFormat } from "@/utils/format";
+import AESHelper from "@/utils/AEShelper";
 export default {
   name: "PaymentPage",
   components: {
@@ -203,7 +205,7 @@ export default {
       paymentPopup: false,
       showKeyboard: false,
       paymentPassword: "",
-      user: "",
+      user: {},
       diningStylePopup: false,
       orderType: "",
       orderTypePrice: 0,
@@ -219,7 +221,8 @@ export default {
         foodsPrice -= this.coupons[this.chosenCoupon].value;
       }
       if (this.orderTypePrice !== "") {
-        foodsPrice += this.orderTypePrice * 100;
+        // 加上打包，外卖的额外费用
+        foodsPrice += (this.orderTypePrice - 1) * 100;
       }
       return foodsPrice < 0 ? 1 : foodsPrice;
     },
@@ -254,15 +257,15 @@ export default {
       this.$set(item, "name", this.transformValue(item.order_type_id));
     });
     let res = (await getUserCoupons()).data;
-    res = res.filter((item) => item.status); //筛选没用过的coupon
+    console.log("请求得到的优惠券", res);
     res.forEach((item) => {
       //将格式装换成vant-coupon的格式
       const obj = {
         coupon_id: item.coupon_id,
-        condition: `门槛：${item.use_limit}元`,
+        condition: `门槛：${item.limit}元`,
         name: item.title,
-        startAt: Math.round(item.create_time / 1000), //vant使用的是10位时间戳，以下转换方案不够准确，凑合着用
-        endAt: Math.round(item.expireIn / 1000),
+        startAt: timeToTimestamp(item.create_time), //vant使用的是10位时间戳，以下转换方案不够准确，凑合着用
+        endAt: get_expirein_time(item.create_time, item.expirein),
         valueDesc: item.discount,
         unitDesc: "元",
         value: item.discount * 100,
@@ -311,30 +314,47 @@ export default {
     },
     async payment() {
       const res = await validatePaymentPass({
-        payment_password: this.paymentPassword,
+        payment_password: AESHelper.encrypt(this.paymentPassword),
       });
       //   支付密码验证成功，开始扣余额
       if (res.status) {
         const updateWalletRes = await updateWallet({
-          price: -(this.total / 100),
+          price: this.total / 100,
         });
         // 支付成功，开始建立websocket通讯
         if (updateWalletRes.status) {
           const foods = [];
           this.$store.state.selectedFoods.forEach((item) => {
             foods.push({
-              food_id: item.food_id,
+              food_id2: item.food_id,
               number: item.step,
             });
           });
-          orderSocket({
-            username: this.user.username,
+          console.log("socket参数", {
+            user_id: this.user.userId,
+            user_phone: this.user.phone,
+            status: 0,
+            create_time: dateFormat(new Date()),
             price: this.total / 100,
+            address: this.user.address,
             order_type: this.transformValue(this.orderType),
             coupon_id: this.useCouponId,
             discount: this.discount,
             foods,
           });
+          orderSocket({
+            user_id: this.user.userId,
+            user_phone: this.user.phone,
+            status: 0,
+            create_time: dateFormat(new Date()),
+            price: this.total / 100,
+            address: this.user.address,
+            order_type: this.transformValue(this.orderType),
+            coupon_id: Number(this.useCouponId),
+            discount: this.discount,
+            foods,
+          });
+          // 输入支付密码弹出框消失
           this.paymentPopup = false;
         }
       }
