@@ -4,7 +4,7 @@
  * @LastEditTime: 2024-03-30 16:43:27
  * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @FilePath: \user-app\src\views\setting\Setting.vue
- * @Description: 用户设置页（已测试通过）
+ * @Description: 用户设置页（已api测试通过）
 -->
 <template>
   <div class="setting">

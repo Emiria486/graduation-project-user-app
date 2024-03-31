@@ -1,7 +1,7 @@
 <!--
  * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @Date: 2024-03-24 15:29:42
- * @LastEditTime: 2024-03-30 19:15:28
+ * @LastEditTime: 2024-03-31 20:46:22
  * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @FilePath: \user-app\src\views\order\Order.vue
  * @Description: 用户支付券码页面（已通过api测试）
@@ -16,7 +16,7 @@
         </div>
       </template>
     </NavBar>
-    <van-empty v-if="!orders.length" description="暂无账单信息" />
+    <van-empty v-if="!orders.length" description="暂无支付券码信息" />
     <template v-else>
       <van-cell-group
         v-for="(item, index) in orders"
