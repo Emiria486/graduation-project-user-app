@@ -1,7 +1,7 @@
 <!--
  * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @Date: 2024-03-24 16:03:37
- * @LastEditTime: 2024-03-31 17:33:58
+ * @LastEditTime: 2024-04-01 12:25:23
  * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @FilePath: \user-app\src\views\order-food\OrderFood.vue
  * @Description: 用户点单页面，基本UI功能修复完毕(已api测试通过)
@@ -39,6 +39,7 @@
               button-size="16"
               disable-input
               min="0"
+              :disabled="!food.status"
             />
           </div>
         </div>
