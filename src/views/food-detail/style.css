@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container .banner {
+  margin: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px;
+  border-color: #9abdd2;
+}
+.container .banner span {
+  display: block;
+}
+.container .banner .nameAndPrice {
+  display: flex;
+  flex-direction: column;
+  width: 5rem;
+}
+.container .banner .nameAndPrice #price {
+  margin-bottom: 1rem;
+  color: #921b9c;
+}
+.container .banner .icon {
+  width: 3rem;
+  margin-left: 15rem;
+  color: #921b9c;
+}
+.container .detail {
+  background-color: #f8f0e8;
+}
+.container .detail .info {
+  margin: 2rem;
+}
+.container .detail .header {
+  display: block;
+  margin: 1rem;
+  border-bottom: solid 1px;
+  border-color: #9abdd2;
+}

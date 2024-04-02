@@ -1,7 +1,7 @@
 <!--
  * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @Date: 2024-03-24 16:03:37
- * @LastEditTime: 2024-04-01 12:25:23
+ * @LastEditTime: 2024-04-02 14:08:53
  * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @FilePath: \user-app\src\views\order-food\OrderFood.vue
  * @Description: 用户点单页面，基本UI功能修复完毕(已api测试通过)
@@ -22,6 +22,7 @@
           <div
             class="order-food-item-introduction"
             :style="{ background: getFoodBg(food.type) }"
+            @click="toDetail(food)"
           >
             <van-image width="120" height="120" :src="food.image" />
             <div class="order-food-item-name">{{ food.food_name }}</div>
@@ -74,6 +75,11 @@ export default {
   name: "OrderFood",
   components: {
     NavBar,
+  },
+  provide() {
+    return {
+      allFoods: this.foods,
+    };
   },
   filters: {
     week(value) {
@@ -146,8 +152,11 @@ export default {
         this.$router.push("/payment");
       }
     },
+    toDetail(food) {
+      this.$router.push("/food-detail/" + food.food_id);
+    },
   },
-  async mounted() {
+  async created() {
     this.foods = (await getFoods({ date: weekFormat(new Date()) })).data;
     console.log("mounted", this.foods);
     this.foods.forEach((food) => {

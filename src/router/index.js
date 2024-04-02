@@ -13,6 +13,7 @@ const Payment = () => import("@/views/payment")
 const Activity = () => import("@/views/activity")
 const PaymentPassword = () => import("@/views/payment-password")
 const Order = () => import("@/views/order")
+const FoodDetail = () => import("@/views/food-detail")
 
 Vue.use(VueRouter)
 
@@ -82,6 +83,14 @@ const routes = [{
         component: OrderFood,
         meta: {
             title: '餐饮预订'
+        }
+    },
+    {
+        path: "/food-detail/:id",
+        name: "FoodDetail",
+        component: FoodDetail,
+        meta: {
+            title: "菜品详情"
         }
     },
     {
