@@ -1,7 +1,7 @@
 <!--
  * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @Date: 2024-03-24 19:35:47
- * @LastEditTime: 2024-03-30 19:55:31
+ * @LastEditTime: 2024-04-09 10:43:21
  * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @FilePath: \user-app\src\views\profile\Profile.vue
  * @Description: 用户“我的”tab总界面（已api测试通过）
@@ -92,15 +92,18 @@ export default {
   },
   computed: {
     token() {
+      // 获取token
       return localStorage.getItem("token");
     },
     wallet() {
+      // 获取钱包余额
       return this.user?.wallet ? this.user.wallet : 0;
     },
   },
   async mounted() {
     const { tabBar } = this;
     tabBar.show = true;
+    // 执行获取用户信息
     if (localStorage.getItem("token")) {
       this.user = (await getUserInfo()).data;
       console.log("profile", this.user);

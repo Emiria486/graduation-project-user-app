@@ -1,7 +1,7 @@
 <!--
  * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @Date: 2024-03-24 17:38:26
- * @LastEditTime: 2024-03-31 16:53:44
+ * @LastEditTime: 2024-04-09 11:03:51
  * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @FilePath: \user-app\src\views\payment\Payment.vue
  * @Description: 用户支付界面（已通过api测试）
@@ -329,18 +329,6 @@ export default {
               food_id2: item.food_id,
               number: item.step,
             });
-          });
-          console.log("socket参数", {
-            user_id: this.user.userId,
-            user_phone: this.user.phone,
-            status: 0,
-            create_time: dateFormat(new Date()),
-            price: this.total / 100,
-            address: this.user.address,
-            order_type: this.transformValue(this.orderType),
-            coupon_id: this.useCouponId,
-            discount: this.discount,
-            foods,
           });
           orderSocket({
             user_id: this.user.userId,

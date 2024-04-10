@@ -1,7 +1,7 @@
 <!--
  * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @Date: 2024-03-24 15:29:42
- * @LastEditTime: 2024-03-31 20:46:22
+ * @LastEditTime: 2024-04-09 11:11:45
  * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @FilePath: \user-app\src\views\order\Order.vue
  * @Description: 用户支付券码页面（已通过api测试）
@@ -166,6 +166,7 @@ export default {
     confirmOrder(event) {
       event.stopPropagation();
     },
+    // 根据传入信息生成支付码
     generateQRCode(qrCodeContent) {
       this.qrCode = new QRCode(this.$refs.qrcode, {
         text: JSON.stringify(qrCodeContent),
