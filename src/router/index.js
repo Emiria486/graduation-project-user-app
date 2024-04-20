@@ -128,6 +128,7 @@ const routes = [{
 ]
 
 const router = new VueRouter({
+    base:"/user/",
     routes,
     mode: 'history'
 })

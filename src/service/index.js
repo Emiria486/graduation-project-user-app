@@ -1,7 +1,7 @@
 /*
  * @Author: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @Date: 2024-03-24 08:16:41
- * @LastEditTime: 2024-03-24 09:11:06
+ * @LastEditTime: 2024-04-15 11:24:32
  * @LastEditors: Emiria486 87558503+Emiria486@users.noreply.github.com
  * @FilePath: \user-app\src\service\index.js
  * @Description: 对axios拦截器进行配置
@@ -10,9 +10,9 @@ import axios from "axios";
 import {
     Toast
 } from 'vant'
-export const API_BASE_URL = "http://127.0.0.1:4396/app"
+export const API_BASE_URL = "http://localhost:4396/app"
 
-export const RESOURCES_BASE_URL = 'http://127.0.0.1:4396/static/app'
+export const RESOURCES_BASE_URL = 'http://localhost:4396/static/app'
 
 export function axiosInstance(config) {
     const instance = axios.create({
